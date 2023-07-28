@@ -6,6 +6,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import mg.itu.m1p10android.BuildConfig;
 import mg.itu.m1p10android.R;
 import mg.itu.m1p10android.data.TypeArticle;
 import mg.itu.m1p10android.data.models.Article;
@@ -30,7 +33,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
     public void onBindViewHolder(@NonNull ArticleViewHolder holder, int position) {
 
         holder.article = mValues[position];
-        holder.articleImage.setImageResource(R.drawable.article_placeholder);
+        Picasso.get()
+                // TODO Atao anaty BuildConfig le lien makany amin'ny images fa tsy manta be otrzao
+                .load(String.join("/", BuildConfig.ApiUrl,"article",mValues[position].getId().toString(), "cover"))
+                .placeholder(R.drawable.loading_placeholder)
+                .error(R.drawable.error_placeholder)
+                .into(holder.articleImage);
         holder.articleTitre.setText(mValues[position].getTitre());
         holder.articleDescr.setText(mValues[position].getDescr());
         holder.articleType.setText(TypeArticle.DESTINATION.label);

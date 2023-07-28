@@ -44,6 +44,8 @@ public class ArticleHttp {
         return requestQueue.add(jsonObjectRequest);
     }
 
+
+
     private Response.Listener<JSONObject> getObject(OnResponseObjectAction onResponseObjectAction) {
         return new Response.Listener<JSONObject>() {
             @Override

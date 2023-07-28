@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
+import mg.itu.m1p10android.BuildConfig;
 import mg.itu.m1p10android.R;
 import mg.itu.m1p10android.data.models.Article;
 import mg.itu.m1p10android.databinding.FragmentArticleDetailsBinding;
@@ -49,6 +52,11 @@ public class ArticleDetailsFragment extends Fragment {
     private void displayArticle(Article a) {
 
         article = a;
+        Picasso.get()
+                .load(String.join("/", BuildConfig.ApiUrl,"article",a.getId().toString(),"cover"))
+                .placeholder(R.drawable.loading_placeholder)
+                .error(R.drawable.error_placeholder)
+                .into(binding.hero);
         binding.artDetTitre.setText(article.getTitre());
         binding.artDetDesc.setText(article.getDescr());
 
