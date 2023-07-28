@@ -38,6 +38,6 @@
         tools:layout="@layout/fragment_article_details" >
         <argument
             android:name="idArticle"
-            app:argType="long" />
+            app:argType="integer" />
     </fragment>
 </navigation>

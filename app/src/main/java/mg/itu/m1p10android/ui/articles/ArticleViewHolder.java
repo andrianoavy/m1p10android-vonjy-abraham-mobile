@@ -6,7 +6,7 @@ import android.widget.TextView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import mg.itu.m1p10android.data.Article;
+import mg.itu.m1p10android.data.models.Article;
 import mg.itu.m1p10android.databinding.FragmentArticleBinding;
 
 public class ArticleViewHolder extends RecyclerView.ViewHolder {

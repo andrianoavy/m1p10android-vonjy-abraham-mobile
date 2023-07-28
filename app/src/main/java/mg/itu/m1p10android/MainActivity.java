@@ -14,11 +14,12 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
+import mg.itu.m1p10android.data.http.ArticleHttp;
 import mg.itu.m1p10android.databinding.ActivityMainBinding;
 import mg.itu.m1p10android.ui.articles.ArticleDetailsFragment;
 import mg.itu.m1p10android.ui.articles.ArticleFragment;
 
-public class MainActivity extends AppCompatActivity implements ArticleFragment.SendArticleId {
+public class MainActivity extends AppCompatActivity{
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -36,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements ArticleFragment.S
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            }
-        });
+            }});
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -65,9 +65,4 @@ public class MainActivity extends AppCompatActivity implements ArticleFragment.S
                 || super.onSupportNavigateUp();
     }
 
-    @Override
-    public void sendData(Long id) {
-        ArticleDetailsFragment frag = (ArticleDetailsFragment) getSupportFragmentManager().findFragmentById(R.id.nav_articles_details);
-        frag.setId(id);
-    }
 }
