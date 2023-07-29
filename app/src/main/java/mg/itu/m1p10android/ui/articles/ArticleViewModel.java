@@ -18,5 +18,9 @@ public class ArticleViewModel extends AndroidViewModel {
     public void fetchAll(ArticleHttp.OnResponseArrayAction action){
         api.fetchAll(action);
     }
+
+    public void search(String searchStr, ArticleHttp.OnResponseArrayAction action){
+        api.findByText(searchStr, action);
+    }
 }
 

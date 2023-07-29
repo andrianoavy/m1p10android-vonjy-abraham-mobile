@@ -20,6 +20,8 @@ android {
     buildTypes {
         debug {
             buildConfigField 'String', "ApiUrl", '"http://192.168.88.26:3000/api"'
+            buildConfigField 'String', "ApiAuthority", '"192.168.88.26:3000/api"'
+            buildConfigField 'String', "Scheme", '"http"'
             manifestPlaceholders = [usesCleartextTraffic:"true"]
         }
         release {

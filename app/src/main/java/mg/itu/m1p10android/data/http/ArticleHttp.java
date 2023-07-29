@@ -1,8 +1,8 @@
 package mg.itu.m1p10android.data.http;
 
-import static mg.itu.m1p10android.data.http.ApiURL.ARTICLE_URL;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import mg.itu.m1p10android.BuildConfig;
 import mg.itu.m1p10android.data.models.Article;
 
 
@@ -25,6 +26,8 @@ public class ArticleHttp {
 
     Context context;
 
+    private final String ARTICLE_URL = BuildConfig.ApiUrl+"/article";
+    private final String ARTICLE_AUTHORITY = BuildConfig.ApiAuthority+"/article";
 
     public ArticleHttp(Context context) {
         this.context = context;
@@ -33,17 +36,16 @@ public class ArticleHttp {
     public Request<JSONArray> fetchAll(OnResponseArrayAction onResponseArrayAction) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
-                (Request.Method.GET, ARTICLE_URL.value, null, getArray(onResponseArrayAction), getErrorListener());
+                (Request.Method.GET, ARTICLE_URL, null, getArray(onResponseArrayAction), getErrorListener());
         RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
         return requestQueue.add(jsonArrayRequest);
     }
 
     public Request<JSONObject> fetchById(int id, OnResponseObjectAction onResponseObjectAction) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, String.format(ARTICLE_URL.value + "/%d", id), null, getObject(onResponseObjectAction), getErrorListener());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, String.format(ARTICLE_URL + "/%d", id), null, getObject(onResponseObjectAction), getErrorListener());
         RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
         return requestQueue.add(jsonObjectRequest);
     }
-
 
 
     private Response.Listener<JSONObject> getObject(OnResponseObjectAction onResponseObjectAction) {
@@ -76,15 +78,32 @@ public class ArticleHttp {
             @Override
             public void onResponse(JSONArray response) {
                 if (response == null)
-                    Log.d("ArticleHttp", "fetchAll: Response is null");
+                    Log.d("ArticleHttp", "Get: Response is null");
                 else {
                     Gson gson = new Gson();
                     Article[] r = gson.fromJson(response.toString(), Article[].class);
                     onResponseArrayAction.doAction(r);
-                    Log.d("ArticleHttp", "fetchAll: " + r.length + " result(s)");
+                    Log.d("ArticleHttp", "Get Array: " + r.length + " result(s)");
                 }
             }
         };
+    }
+
+    public Request<JSONArray> findByText(String searchStr, OnResponseArrayAction action) {
+
+        Uri.Builder builder = new Uri.Builder();
+        Uri uri = builder
+                .scheme(BuildConfig.Scheme)
+                .encodedAuthority(ARTICLE_AUTHORITY)
+                .appendQueryParameter("s", searchStr)
+                .build();
+        Log.d("ArticleHttp", "FindByText: " + uri.toString());
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
+                (Request.Method.GET, uri.toString(), null, getArray(action), getErrorListener());
+
+        RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
+        return requestQueue.add(jsonArrayRequest);
+
     }
 
     @FunctionalInterface
