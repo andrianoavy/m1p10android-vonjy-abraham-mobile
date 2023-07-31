@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "900367295686",
+    "project_id": "m1p10android-vonjy-abraham",
+    "storage_bucket": "m1p10android-vonjy-abraham.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900367295686:android:281e3102ee2714863fe3c7",
+        "android_client_info": {
+          "package_name": "mg.itu.m1p10android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900367295686-741svdpp62brsai90q7lp3gmo3ppnrqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6fHiLlktwqI5c_Lw-ecNq7S1b8_tESlE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900367295686-741svdpp62brsai90q7lp3gmo3ppnrqk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

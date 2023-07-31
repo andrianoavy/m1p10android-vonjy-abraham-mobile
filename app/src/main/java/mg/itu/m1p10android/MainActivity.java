@@ -1,6 +1,7 @@
 package mg.itu.m1p10android;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
@@ -15,6 +16,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import mg.itu.m1p10android.databinding.ActivityMainBinding;
+import mg.itu.m1p10android.models.MyApp;
+import mg.itu.m1p10android.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +32,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
+
+
+//        get data api
+//        String baseUrl = MyApp.getBaseUrl();
+//        User user = new User(getApplicationContext());
+//        String url = baseUrl + "api/auth/allUser";
+//        user.getAllUsers(url, user.getToken(), new User.ApiCallback() {
+//            @Override
+//            public void onSuccess(String token) {
+//                Log.e("test data get---",token);
+//            }
+//
+//            @Override
+//            public void onError(String errorMessage) {
+//
+//            }
+//        });
+
+
+
+
+
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
