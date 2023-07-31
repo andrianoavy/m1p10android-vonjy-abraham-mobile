@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText champ_nom = findViewById(R.id.champ_nom);
         EditText champ_pwd = findViewById(R.id.champ_pwd);
 
-        String baseUrl = MyApp.getBaseUrl();
+        String baseUrl = BuildConfig.ApiUrl;
         btn_connexion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
