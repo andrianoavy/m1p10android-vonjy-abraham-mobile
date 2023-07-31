@@ -84,6 +84,9 @@ public class ArticleFragment extends Fragment implements MenuProvider {
 
     @Override
     public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
+        if(menuItem.getItemId() == android.R.id.home){
+            return false;
+        }
         return true;
     }
 
@@ -105,5 +108,10 @@ public class ArticleFragment extends Fragment implements MenuProvider {
                 return false;
             }
         });
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
