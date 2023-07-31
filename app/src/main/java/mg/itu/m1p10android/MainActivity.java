@@ -14,12 +14,11 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import mg.itu.m1p10android.data.http.ArticleHttp;
 import mg.itu.m1p10android.databinding.ActivityMainBinding;
-import mg.itu.m1p10android.ui.articles.ArticleDetailsFragment;
-import mg.itu.m1p10android.ui.articles.ArticleFragment;
+import mg.itu.m1p10android.models.MyApp;
+import mg.itu.m1p10android.models.User;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
@@ -33,6 +32,34 @@ public class MainActivity extends AppCompatActivity{
 
         setSupportActionBar(binding.appBarMain.toolbar);
 
+
+//        get data api
+//        String baseUrl = MyApp.getBaseUrl();
+//        User user = new User(getApplicationContext());
+//        String url = baseUrl + "api/auth/allUser";
+//        user.getAllUsers(url, user.getToken(), new User.ApiCallback() {
+//            @Override
+//            public void onSuccess(String token) {
+//                Log.e("test data get---",token);
+//            }
+//
+//            @Override
+//            public void onError(String errorMessage) {
+//
+//            }
+//        });
+
+
+
+
+
+        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -49,7 +76,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
@@ -59,5 +86,4 @@ public class MainActivity extends AppCompatActivity{
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 }
