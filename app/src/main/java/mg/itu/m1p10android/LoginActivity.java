@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     // Appelez la méthode callApi avec l'URL de l'API et le requestBody contenant les paramètres
-                    user.callApi(baseUrl + "api/auth/login", requestBody, new User.ApiCallback() {
+                    user.callApi(baseUrl + "/auth/login", requestBody, new User.ApiCallback() {
                         @Override
                         public void onSuccess(String token) {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

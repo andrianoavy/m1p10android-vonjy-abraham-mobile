@@ -28,7 +28,7 @@ public class InscriptionActivity extends AppCompatActivity {
         EditText champ_email = findViewById(R.id.champ_email);
         EditText champ_pwd = findViewById(R.id.champ_pwd);
 
-        String baseUrl = MyApp.getBaseUrl();
+        String baseUrl = BuildConfig.ApiUrl;
 
         inscription.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +53,7 @@ public class InscriptionActivity extends AppCompatActivity {
                     }
 
                     // Appelez la méthode callApi avec l'URL de l'API et le requestBody contenant les paramètres
-                    user.callInscriptionApi(baseUrl + "api/auth/inscription", requestBody, new User.ApiCallback() {
+                    user.callInscriptionApi(baseUrl + "/auth/inscription", requestBody, new User.ApiCallback() {
                         @Override
                         public void onSuccess(String token) {
                             JSONObject requestBodyLogin = new JSONObject();
@@ -64,7 +64,7 @@ public class InscriptionActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                            user.callApi(baseUrl + "api/auth/login", requestBodyLogin, new User.ApiCallback() {
+                            user.callApi(baseUrl + "/auth/login", requestBodyLogin, new User.ApiCallback() {
                                 @Override
                                 public void onSuccess(String token) {
                                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
