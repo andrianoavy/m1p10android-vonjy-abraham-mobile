@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"http://192.168.88.26:3000/api"'
+            buildConfigField 'String', "ApiUrl", '"https://0794-154-126-56-74.ngrok-free.app/api"'
             buildConfigField 'String', "ApiAuthority", '"192.168.88.26:3000/api"'
             buildConfigField 'String', "Scheme", '"http"'
             manifestPlaceholders = [usesCleartextTraffic:"true"]
