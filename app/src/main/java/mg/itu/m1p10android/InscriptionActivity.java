@@ -71,7 +71,6 @@ public class InscriptionActivity extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }
-
                                 @Override
                                 public void onError(String errorMessage) {
 //                                    Intent intent = new Intent(getApplicationContext(), InscriptionActivity.class);

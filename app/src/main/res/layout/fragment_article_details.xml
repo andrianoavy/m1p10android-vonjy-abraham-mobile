@@ -44,5 +44,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 />
 
+        <TextView
+            android:id="@+id/art_det_contenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toStartOf="@+id/hero"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/art_det_desc" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

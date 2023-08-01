@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +44,7 @@ public class ArticleDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentArticleDetailsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
+        binding.artDetContenu.setMovementMethod(LinkMovementMethod.getInstance());
         viewModel = new ViewModelProvider(this).get(ArticleDetailsViewModel.class);
         id = new Integer(ArticleDetailsFragmentArgs.fromBundle(getArguments()).getIdArticle());
         viewModel.fetchById(id, this::displayArticle);
@@ -59,6 +61,7 @@ public class ArticleDetailsFragment extends Fragment {
                 .into(binding.hero);
         binding.artDetTitre.setText(article.getTitre());
         binding.artDetDesc.setText(article.getDescr());
+        binding.artDetContenu.setText(HtmlCompat.fromHtml(article.getContenu(), HtmlCompat.FROM_HTML_MODE_LEGACY));
 
     }
 

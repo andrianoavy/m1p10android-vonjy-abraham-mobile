@@ -1,9 +1,11 @@
 package mg.itu.m1p10android.data.models;
 
+import android.text.Html;
+import android.text.Spanned;
+
 import androidx.annotation.NonNull;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Article {
     private Integer id = null;
@@ -13,6 +15,7 @@ public class Article {
     private LocalDate datePub;
     private LocalDate dateModif;
 
+    private String contenu;
     public Article() {
     }
 
@@ -62,4 +65,15 @@ public class Article {
         this.dateModif = dateModif;
     }
 
+    public String getContenu() {
+        return contenu;
+    }
+
+    public Spanned getHtmlContenu() {
+        return Html.fromHtml(this.contenu, Html.FROM_HTML_MODE_LEGACY);
+    }
+
+    public void setContenu(String contenu) {
+        this.contenu = contenu;
+    }
 }
