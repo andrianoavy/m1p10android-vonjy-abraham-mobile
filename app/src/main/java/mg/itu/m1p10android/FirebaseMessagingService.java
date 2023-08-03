@@ -12,10 +12,21 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
     private static final String CANAL = "NotificationCanal";
+    private Intent intent;
+    private int flags;
+    private int startId;
+
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+        Log.e("Firebase = ", token);
+    }
 
     @Override
     public void onMessageReceived(@NonNull RemoteMessage remoteMessage) {
@@ -44,7 +55,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         notificationBuilder.setVibrate(vibrationPattern);
 
         //icon
-        notificationBuilder.setSmallIcon(R.drawable.bg_alarm);
+        notificationBuilder.setSmallIcon(R.drawable.icon_apk);
 
         //envoyer la notification
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -60,4 +71,5 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         }
         notificationManager.notify(1,notificationBuilder.build());
     }
+
 }

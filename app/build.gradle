@@ -20,9 +20,9 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"https://0794-154-126-56-74.ngrok-free.app/api"'
-            buildConfigField 'String', "ApiAuthority", '"192.168.88.26:3000/api"'
-            buildConfigField 'String', "Scheme", '"http"'
+            buildConfigField 'String', "ApiUrl", '"https://76f8-154-126-56-74.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiAuthority", '"76f8-154-126-56-74.ngrok-free.app/api"'
+            buildConfigField 'String', "Scheme", '"https"'
             manifestPlaceholders = [usesCleartextTraffic:"true"]
         }
         release {
@@ -57,6 +57,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.google.firebase:firebase-messaging:23.0.3'
+    implementation 'androidx.preference:preference:1.2.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

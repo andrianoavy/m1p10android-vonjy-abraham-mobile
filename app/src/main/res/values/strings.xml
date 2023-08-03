@@ -5,14 +5,30 @@
     <string name="nav_header_title">Tourisme à Madagascar</string>
     <string name="nav_header_subtitle"></string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Préférences</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_slideshow">Préférences</string>
+    <string name="menu_settings">Préférences</string>
     <string name="menu_articles">Articles</string>
     <string name="youtube_webview"><![CDATA[<!DOCTYPE html><html><body><div id=\"player\"></div><script>var tag=document.createElement(\"script\");tag.src=\"https://www.youtube.com/iframe_api\";var player,firstScriptTag=document.getElementsByTagName(\"script\")[0];function onYouTubeIframeAPIReady(){player=new YT.Player(\"player\",{height:\"100%%\",width:\"100%%\",videoId:\"%s\",playerVars:{playsinline:1},events:{onReady:onPlayerReady,onStateChange:onPlayerStateChange}})}function onPlayerReady(e){e.target.playVideo()}firstScriptTag.parentNode.insertBefore(tag,firstScriptTag);var done=!1;function onPlayerStateChange(e){e.data!=YT.PlayerState.PLAYING||done||(setTimeout(stopVideo,6e3),done=!0)}function stopVideo(){player.stopVideo()}</script></body></html>]]></string>
     <string name="notification_channel_id">Canal</string>
     <string name="notification_channel_title">Titre</string>
     <string name="notification_channel_desc">C\'est le canal</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Réglages</string>
+    <string name="sync_header">Synchronisation</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Paramètres du son</string>
+    <string name="sync_title_notif">Notification</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>
