@@ -16,6 +16,8 @@ public class Article {
     private LocalDate dateModif;
 
     private String contenu;
+    private String video;
+
     public Article() {
     }
 
@@ -66,14 +68,28 @@ public class Article {
     }
 
     public String getContenu() {
+        if(contenu == null || contenu.isEmpty()) {
+            return "<span></span>";
+        }
         return contenu;
     }
 
     public Spanned getHtmlContenu() {
+        if(this.contenu == null){
+            this.contenu = "";
+        }
         return Html.fromHtml(this.contenu, Html.FROM_HTML_MODE_LEGACY);
     }
 
     public void setContenu(String contenu) {
         this.contenu = contenu;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 }

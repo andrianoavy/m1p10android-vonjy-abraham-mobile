@@ -8,8 +8,10 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/det_cl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="16dp"
         android:orientation="vertical">
 
         <ImageView
@@ -25,24 +27,33 @@
             android:id="@+id/art_det_titre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
             android:background="@color/hero_box_color"
-            android:text="TextView"
             android:paddingTop="8dp"
+            android:text="TextView"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/hero"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-                android:id="@+id/art_det_desc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                app:layout_constraintTop_toBottomOf="@+id/hero"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
+            android:id="@+id/art_det_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/hero" />
+
+        <WebView
+            android:id="@+id/art_det_video"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintDimensionRatio="H,16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/art_det_desc" />
 
         <TextView
             android:id="@+id/art_det_contenu"
@@ -53,7 +64,7 @@
             app:layout_constraintEnd_toStartOf="@+id/hero"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/art_det_desc" />
+            app:layout_constraintTop_toBottomOf="@+id/art_det_video" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

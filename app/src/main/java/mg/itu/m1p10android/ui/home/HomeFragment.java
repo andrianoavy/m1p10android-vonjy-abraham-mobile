@@ -1,32 +1,34 @@
 package mg.itu.m1p10android.ui.home;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.webkit.WebSettings;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import mg.itu.m1p10android.GpsTracker;
 import mg.itu.m1p10android.R;
 import mg.itu.m1p10android.databinding.FragmentHomeBinding;
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+
+    private GpsTracker gpsTracker;
+    private double latitude;
+    private double longitude;
+
+    public HomeFragment() {
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +50,10 @@ public class HomeFragment extends Fragment {
         binding.webview.loadData(encodedHtml, "text/html", "base64");
 
         final TextView textView = binding.textHome;
+        binding.button.setOnClickListener(view -> {
+            getLocation(root);
+            Toast.makeText(getActivity(), String.format("%f, %f", longitude, latitude), Toast.LENGTH_SHORT).show();
+        });
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
@@ -56,5 +62,15 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void getLocation(View view) {
+        gpsTracker = new GpsTracker(this.getActivity());
+        if (gpsTracker.canGetLocation()) {
+            latitude = gpsTracker.getLatitude();
+            longitude = gpsTracker.getLongitude();
+        } else {
+            gpsTracker.showSettingsAlert();
+        }
     }
 }

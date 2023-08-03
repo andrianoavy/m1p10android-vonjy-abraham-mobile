@@ -1,19 +1,21 @@
 package mg.itu.m1p10android.ui.articles;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.text.HtmlCompat;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
-
 import android.text.method.LinkMovementMethod;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.core.text.HtmlCompat;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.squareup.picasso.Picasso;
 
@@ -61,7 +63,29 @@ public class ArticleDetailsFragment extends Fragment {
                 .into(binding.hero);
         binding.artDetTitre.setText(article.getTitre());
         binding.artDetDesc.setText(article.getDescr());
-        binding.artDetContenu.setText(HtmlCompat.fromHtml(article.getContenu(), HtmlCompat.FROM_HTML_MODE_LEGACY));
+
+        if(a.getVideo() != null && !a.getVideo().isEmpty()) {
+            String unencodedHtml = String.format(getResources().getString(R.string.youtube_webview),a.getVideo() );
+            Log.d("Webview", unencodedHtml);
+            String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
+                    Base64.NO_PADDING);
+            WebSettings webSettings = binding.artDetVideo.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+
+            binding.artDetVideo.setBackgroundColor(Color.argb(1, 255, 255, 255));
+            binding.artDetVideo.loadData(encodedHtml, "text/html", "base64");
+        }
+        else {
+            ConstraintSet set = new ConstraintSet();
+            set.clone(binding.detCl);
+            binding.detCl.removeView(binding.artDetVideo);
+            set.clear(R.id.art_det_video);
+            set.connect(R.id.art_det_contenu, ConstraintSet.TOP, R.id.art_det_desc, ConstraintSet.BOTTOM, 32);
+            set.applyTo(binding.detCl);
+        }
+
+
+        binding.artDetContenu.setText(a.getHtmlContenu());
 
     }
 
