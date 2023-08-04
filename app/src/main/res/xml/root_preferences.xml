@@ -15,13 +15,6 @@
             app:key="pref_key_enable_notifications"
             app:title="@string/sync_title_notif" />
 
-<!--        <SwitchPreferenceCompat-->
-<!--            app:dependency="sync"-->
-<!--            app:key="attachment"-->
-<!--            app:summaryOff="@string/attachment_summary_off"-->
-<!--            app:summaryOn="@string/attachment_summary_on"-->
-<!--            app:title="@string/attachment_title" />-->
-
     </PreferenceCategory>
 
 </PreferenceScreen>
