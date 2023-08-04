@@ -211,6 +211,25 @@ public class User {
         editor.apply();
     }
 
+    public void saveNameUser(String nom){
+        // Obtenez une instance de SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Éditez les préférences pour enregistrer le token
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("nameUser", nom);
+        editor.apply();
+    }
+
+    public String getNameUser(){
+        // Obtenez une instance de SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Récupérez le token enregistré en utilisant la clé "token"
+        String token = sharedPreferences.getString("nameUser", "");
+        return token;
+    }
+
     public String getToken(){
         // Obtenez une instance de SharedPreferences
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
