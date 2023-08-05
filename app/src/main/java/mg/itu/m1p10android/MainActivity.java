@@ -2,13 +2,17 @@ package mg.itu.m1p10android;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.core.app.ActivityCompat;
@@ -19,6 +23,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mg.itu.m1p10android.databinding.ActivityMainBinding;
 import mg.itu.m1p10android.models.MyApp;
@@ -28,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+
+    ViewPager2 viewPager2;
+
+    private Handler slideHandler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationScheduler.scheduleNotification(this);
 
+
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

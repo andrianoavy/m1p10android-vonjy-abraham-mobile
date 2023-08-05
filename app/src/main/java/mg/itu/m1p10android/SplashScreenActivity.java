@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import mg.itu.m1p10android.models.User;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     private final int SPLASH_SCREEN_TIMEOUT = 3000;
@@ -17,16 +19,32 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //rediriger vers la page MainActivity
 
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        };
+        User user = new User(getApplicationContext());
+        Boolean isLoginIn = user.getLogin();
+        if(isLoginIn){
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            };
+            //        handler post delayer
+            new Handler().postDelayed(runnable,SPLASH_SCREEN_TIMEOUT);
+        }else {
+            Runnable runnable = new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            };
+            //        handler post delayer
+            new Handler().postDelayed(runnable,SPLASH_SCREEN_TIMEOUT);
+        }
 
-//        handler post delayer
-         new Handler().postDelayed(runnable,SPLASH_SCREEN_TIMEOUT);
+
     }
 }

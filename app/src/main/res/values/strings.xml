@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">M1P10ANDROID_VONJY_ABRAHAM</string>
+    <string name="app_name">Madagascar tourisme</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Tourisme à Madagascar</string>
-    <string name="nav_header_subtitle"></string>
+    <string name="nav_header_subtitle">Abraham - Vonjy</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Préférences</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">Accueil</string>
+    <string name="menu_gallery">Déconnexion</string>
     <string name="menu_slideshow">Préférences</string>
     <string name="menu_settings">Préférences</string>
     <string name="menu_articles">Articles</string>
@@ -31,4 +31,26 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="description_tourisme">
+        Madagascar, l\'île exotique située au large de la côte est de l\'Afrique, offre une expérience touristique véritablement unique. Sa beauté naturelle, sa biodiversité exceptionnelle et sa culture riche attirent des voyageurs du monde entier. Parmi les sites touristiques incontournables de Madagascar, on trouve :
+        \n\n
+        <b>Parc National de l\'Isalo :</b>Ce parc national fascinant est caractérisé par ses formations rocheuses étonnantes, ses canyons profonds et ses piscines naturelles. Les randonneurs seront émerveillés par les sentiers qui mènent à des vues à couper le souffle, et la faune locale, y compris les lémuriens, ajoutera une touche de magie à votre exploration.
+        \n\n
+        <b>L\'Allée des Baobabs :</b>L\'image emblématique de Madagascar, cette avenue bordée de majestueux baobabs est particulièrement spectaculaire au coucher du soleil. Les baobabs, certains vieux de plus de mille ans, créent un décor irréel et magique, invitant les visiteurs à se plonger dans l\'histoire naturelle de l\'île.
+        \n\n
+        <b>Parc National de l\'Andasibe-Mantadia : </b>Un sanctuaire pour les lémuriens, ce parc est un must pour tout amateur de faune et de flore. Les lémuriens indris, connus pour leurs chants mélodieux, sont parmi les principales attractions, mais vous trouverez également une abondance d\'oiseaux, de caméléons et d\'autres espèces endémiques.
+        \n\n
+        <b>Nosy Be : </b>Cette île paradisiaque est un véritable havre de paix. Ses plages de sable blanc, ses eaux turquoise et ses récifs coralliens en font un paradis pour les plongeurs et les amateurs de sports nautiques. Vous pourrez également explorer les marchés locaux, goûter à la cuisine malgache et profiter de l\'hospitalité des habitants.
+        \n\n
+        <b>Parc National de Ranomafana : </b>C\'est l\'un des parcs les plus célèbres de Madagascar, offrant une expérience de randonnée unique à travers une forêt tropicale luxuriante. Ici, vous aurez l\'opportunité de voir diverses espèces de lémuriens, des caméléons colorés et une multitude d\'oiseaux rares.
+        \n\n
+        <b>Tsingy de Bemaraha : </b>Ce site classé au patrimoine mondial de l\'UNESCO est célèbre pour ses formations rocheuses karstiques acérées, créant un paysage véritablement extraordinaire. Les sentiers d\'escalade et les passerelles vous permettront de traverser ce paysage unique et de découvrir une biodiversité étonnante.
+        \n\n
+        <b>Antananarivo :</b>La capitale de Madagascar, souvent appelée Tana, est un mélange vibrant de cultures et d\'histoire. Vous pourrez explorer les marchés animés, visiter les palais royaux historiques et découvrir les influences architecturales françaises et malgaches qui coexistent dans la ville.
+        \n\n
+        De la nature sauvage à la culture authentique, Madagascar vous réserve une aventure inoubliable. Chaque site touristique vous plongera dans une expérience unique, vous permettant d\'explorer la diversité fascinante de cette île exceptionnelle.
+    </string>
+
+    <string name="copyright">Copyright © juillet 2023</string>
+    <string name="developper">Abraham - Vonjy</string>
 </resources>

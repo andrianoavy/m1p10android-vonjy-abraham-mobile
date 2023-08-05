@@ -20,8 +20,8 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"https://28a5-154-126-56-74.ngrok-free.app/api"'
-            buildConfigField 'String', "ApiAuthority", '"28a5-154-126-56-74.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiUrl", '"https://cc5e-41-77-20-8.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiAuthority", '"cc5e-41-77-20-8.ngrok-free.app/api"'
             buildConfigField 'String', "Scheme", '"https"'
             manifestPlaceholders = [usesCleartextTraffic:"true"]
         }
@@ -58,6 +58,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.google.firebase:firebase-messaging:23.0.3'
     implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

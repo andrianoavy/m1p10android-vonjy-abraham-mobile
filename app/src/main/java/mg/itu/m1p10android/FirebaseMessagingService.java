@@ -1,5 +1,7 @@
 package mg.itu.m1p10android;
 
+import static android.content.Intent.getIntent;
+
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -41,7 +43,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,intent ,0);
 
-
         // creer une notification
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this,CANAL);
         notificationBuilder.setContentTitle("Madagascar tourisme");
@@ -70,6 +71,20 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
             notificationBuilder.setChannelId(channelId);
         }
         notificationManager.notify(1,notificationBuilder.build());
+
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Log.w("FCM Token", "Fetching FCM registration token failed", task.getException());
+                        return;
+                    }
+
+                    // Obtenez le token FCM
+                    String token = task.getResult();
+                    Log.d("FCM Token", token);
+                });
     }
+
+
 
 }

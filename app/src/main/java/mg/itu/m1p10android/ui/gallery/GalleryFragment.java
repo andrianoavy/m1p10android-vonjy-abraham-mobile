@@ -1,5 +1,8 @@
 package mg.itu.m1p10android.ui.gallery;
 
+import android.content.ClipData;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
+import mg.itu.m1p10android.LoginActivity;
+import mg.itu.m1p10android.MainActivity;
+import mg.itu.m1p10android.R;
 import mg.itu.m1p10android.databinding.FragmentGalleryBinding;
+import mg.itu.m1p10android.models.User;
 
 public class GalleryFragment extends Fragment {
 
@@ -24,8 +32,14 @@ public class GalleryFragment extends Fragment {
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textGallery;
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+
+        User user = new User(getActivity().getApplicationContext());
+        user.removeLogin();
+
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        startActivity(intent);
+
         return root;
     }
 

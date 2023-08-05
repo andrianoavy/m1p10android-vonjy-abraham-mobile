@@ -31,9 +31,6 @@ public class LocalNotificationManager{
 
         // Construisez l'intent pour l'ouverture de l'activité spécifique lors de la notification.
         Intent intent = new Intent(context, MainActivity.class);
-        // Ajoutez des informations supplémentaires à l'intention si nécessaire.
-        // Par exemple, vous pouvez passer des données spécifiques à l'activité pour effectuer une action.
-        // intent.putExtra("key", value);
 
         // Créez l'intent pour l'annulation de la notification.
         Intent cancelIntent = new Intent(context, NotificationCancelReceiver.class);

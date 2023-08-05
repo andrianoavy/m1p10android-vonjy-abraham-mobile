@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.preference.PreferenceManager;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -151,6 +153,7 @@ public class User {
                                     JSONObject jsonObject = new JSONObject(jsonResponse.toString());
                                     String token = jsonObject.getString("token");
                                     saveToken(token);
+                                    saveLogin();
                                     callback.onSuccess(token);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -211,6 +214,14 @@ public class User {
         editor.apply();
     }
 
+    public void saveLogin(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("is_logged_in", true);
+        editor.apply();
+    }
+
+
     public void saveNameUser(String nom){
         // Obtenez une instance de SharedPreferences
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
@@ -221,6 +232,21 @@ public class User {
         editor.apply();
     }
 
+    public Boolean getLogin(){
+        // Obtenez une instance de SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Récupérez le token enregistré en utilisant la clé "token"
+        Boolean isLoggedIn = sharedPreferences.getBoolean("is_logged_in", false);
+        return isLoggedIn;
+    }
+
+    public void removeLogin(){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("is_logged_in");
+        editor.apply();
+    }
     public String getNameUser(){
         // Obtenez une instance de SharedPreferences
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
