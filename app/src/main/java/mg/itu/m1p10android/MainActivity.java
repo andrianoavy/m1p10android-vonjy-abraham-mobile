@@ -2,27 +2,20 @@ package mg.itu.m1p10android;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Menu;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.navigation.NavigationView;
 
 import mg.itu.m1p10android.databinding.ActivityMainBinding;
-import mg.itu.m1p10android.models.MyApp;
-import mg.itu.m1p10android.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
