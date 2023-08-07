@@ -1,5 +1,7 @@
 package mg.itu.m1p10android.ui.articles;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -32,7 +34,9 @@ import java.util.List;
 import mg.itu.m1p10android.BuildConfig;
 import mg.itu.m1p10android.R;
 import mg.itu.m1p10android.SlideAdapter;
+import mg.itu.m1p10android.SlideAdapterLink;
 import mg.itu.m1p10android.SlideItem;
+import mg.itu.m1p10android.SlideItemLink;
 import mg.itu.m1p10android.data.models.Article;
 import mg.itu.m1p10android.databinding.FragmentArticleDetailsBinding;
 import mg.itu.m1p10android.models.MyApp;
@@ -41,10 +45,12 @@ public class ArticleDetailsFragment extends Fragment {
 
     private FragmentArticleDetailsBinding binding;
     private Integer id;
+    private String titre;
     private ImageView hero;
     private Article article;
     private ArticleDetailsViewModel viewModel;
 
+    Context context;
     ViewPager2 viewPager2;
 
     private Handler slideHandler = new Handler();
@@ -67,18 +73,25 @@ public class ArticleDetailsFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(ArticleDetailsViewModel.class);
         id = new Integer(ArticleDetailsFragmentArgs.fromBundle(getArguments()).getIdArticle());
 
+        viewModel.fetchById(id, this::displayArticle);
+//        titre = new Article().getTitre();
+//        Log.e("Titre ---------:",titre);
 
+//        String titre = getTitre();
+//        Log.e("Titre article:-------",titre);
         //slide image
         viewPager2 = root.findViewById(R.id.viewPagerHero);
-        List<SlideItem> slideItem = new ArrayList<>();
-        slideItem.add(new SlideItem(R.drawable.slide1));
-//        slideItem.add(new SlideItem(R.drawable.slide2));
-        slideItem.add(new SlideItem(R.drawable.slide3));
-        slideItem.add(new SlideItem(R.drawable.slide4));
-        slideItem.add(new SlideItem(R.drawable.slide5));
-        slideItem.add(new SlideItem(R.drawable.slide6));
+        List<SlideItemLink> slideItemLinks = new ArrayList<>();
+        slideItemLinks.add(new SlideItemLink(BuildConfig.ApiUrl+"/article/7/slides/0.webp"));
+        slideItemLinks.add(new SlideItemLink(BuildConfig.ApiUrl+"/article/7/slides/1.webp"));
+        slideItemLinks.add(new SlideItemLink(BuildConfig.ApiUrl+"/article/7/slides/2.webp"));
+//        slideItemLinks.add(new SlideItem(R.drawable.slide2));
+//        slideItemLinks.add(new SlideItemLink(R.drawable.slide3));
+//        slideItemLinks.add(new SlideItemLink(R.drawable.slide4));
+//        slideItemLinks.add(new SlideItemLink(R.drawable.slide5));
+//        slideItemLinks.add(new SlideItemLink(R.drawable.slide6));
 
-        viewPager2.setAdapter(new SlideAdapter(slideItem,viewPager2));
+        viewPager2.setAdapter(new SlideAdapterLink(slideItemLinks,viewPager2));
 
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
@@ -131,16 +144,16 @@ public class ArticleDetailsFragment extends Fragment {
         slideHandler.postDelayed(slideeRunnable,2000);
     }
 
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        super.onViewCreated(view, savedInstanceState);
-//        viewModel.fetchById(id, this::displayArticle);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel.fetchById(id, this::displayArticle);
 //        Picasso.get()
 //                .load(String.join("/", BuildConfig.ApiUrl,"article",id.toString(),"cover"))
 //                .placeholder(R.drawable.loading_placeholder)
 //                .error(R.drawable.error_placeholder)
 //                .into(binding.hero);
-//    }
+    }
 
     private void displayArticle(Article a) {
 
@@ -173,5 +186,7 @@ public class ArticleDetailsFragment extends Fragment {
         binding.artDetContenu.setText(a.getHtmlContenu());
 
     }
+
+
 
 }

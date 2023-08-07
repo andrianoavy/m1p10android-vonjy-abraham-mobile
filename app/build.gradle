@@ -20,8 +20,8 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"https://3fe7-154-126-56-74.ngrok-free.app/api"'
-            buildConfigField 'String', "ApiAuthority", '"3fe7-154-126-56-74.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiUrl", '"https://0d01-41-63-150-240.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiAuthority", '"0d01-41-63-150-240.ngrok-free.app/api"'
             buildConfigField 'String', "Scheme", '"https"'
 
 //            buildConfigField 'String', "ApiUrl", '"http://192.168.88.26:3000/api"'
@@ -69,6 +69,9 @@ dependencies {
     implementation 'androidx.preference:preference:1.2.0'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
