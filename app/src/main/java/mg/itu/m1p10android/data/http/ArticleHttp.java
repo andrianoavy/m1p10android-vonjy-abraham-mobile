@@ -2,6 +2,7 @@ package mg.itu.m1p10android.data.http;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 
@@ -118,5 +119,24 @@ public class ArticleHttp implements ArticleRepository{
 
     }
 
+
+    public void saveTitre(String titre){
+        // Obtenez une instance de SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Éditez les préférences pour enregistrer le token
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("titre", titre);
+        editor.apply();
+    }
+
+    public String getTitre(){
+        // Obtenez une instance de SharedPreferences
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+
+        // Récupérez le token enregistré en utilisant la clé "token"
+        String titre = sharedPreferences.getString("titre", "");
+        return titre;
+    }
 
 }

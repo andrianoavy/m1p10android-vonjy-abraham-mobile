@@ -44,7 +44,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleViewHolder> {
                 .error(R.drawable.error_placeholder)
                 .into(holder.articleImage);
         holder.articleTitre.setText(mValues[position].getTitre());
-        holder.articleDescr.setText(mValues[position].getDescr());
+//        holder.articleDescr.setText(mValues[position].getDescr());
         holder.articleType.setText(mValues[position].getDateModif().format(formatter));
 
     }

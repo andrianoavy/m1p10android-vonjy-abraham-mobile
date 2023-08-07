@@ -27,4 +27,5 @@ public class ArticleDetailsViewModel extends AndroidViewModel {
         repo.fetchById(id, action);
     }
 
+
 }

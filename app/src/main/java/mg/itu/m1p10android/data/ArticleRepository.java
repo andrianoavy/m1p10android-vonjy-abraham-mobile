@@ -6,6 +6,8 @@ public interface ArticleRepository {
     public void fetchAll(OnArrayAction action);
     public void fetchAllFull(OnArrayAction action);
     public void fetchById(int id, OnObjectAction action);
+
+
     public void findByText(String searchStr, OnArrayAction action);
 
 
