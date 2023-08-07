@@ -85,11 +85,6 @@ public class ArticleDetailsFragment extends Fragment {
         slideItemLinks.add(new SlideItemLink(BuildConfig.ApiUrl+"/article/7/slides/0.webp"));
         slideItemLinks.add(new SlideItemLink(BuildConfig.ApiUrl+"/article/7/slides/1.webp"));
         slideItemLinks.add(new SlideItemLink(BuildConfig.ApiUrl+"/article/7/slides/2.webp"));
-//        slideItemLinks.add(new SlideItem(R.drawable.slide2));
-//        slideItemLinks.add(new SlideItemLink(R.drawable.slide3));
-//        slideItemLinks.add(new SlideItemLink(R.drawable.slide4));
-//        slideItemLinks.add(new SlideItemLink(R.drawable.slide5));
-//        slideItemLinks.add(new SlideItemLink(R.drawable.slide6));
 
         viewPager2.setAdapter(new SlideAdapterLink(slideItemLinks,viewPager2));
 
