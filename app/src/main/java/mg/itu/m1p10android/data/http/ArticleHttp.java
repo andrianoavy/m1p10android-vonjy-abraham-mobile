@@ -19,10 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import mg.itu.m1p10android.BuildConfig;
+import mg.itu.m1p10android.data.ArticleRepository;
 import mg.itu.m1p10android.data.models.Article;
 
 
-public class ArticleHttp {
+public class ArticleHttp implements ArticleRepository{
 
     Context context;
 
@@ -33,39 +34,49 @@ public class ArticleHttp {
         this.context = context;
     }
 
-    public Request<JSONArray> fetchAll(OnResponseArrayAction onResponseArrayAction) {
+    @Override
+    public void fetchAll(ArticleRepository.OnArrayAction onArrayAction) {
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
-                (Request.Method.GET, ARTICLE_URL, null, getArray(onResponseArrayAction), getErrorListener());
+                (Request.Method.GET, ARTICLE_URL, null, getArray(onArrayAction), getErrorListener());
         RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
-        return requestQueue.add(jsonArrayRequest);
+        requestQueue.add(jsonArrayRequest);
     }
 
-    public Request<JSONObject> fetchById(int id, OnResponseObjectAction onResponseObjectAction) {
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, String.format(ARTICLE_URL + "/%d", id), null, getObject(onResponseObjectAction), getErrorListener());
+    @Override
+    public void fetchAllFull(ArticleRepository.OnArrayAction onArrayAction) {
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest
+                (Request.Method.GET, ARTICLE_URL + "/full", null, getArray(onArrayAction), getErrorListener());
         RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
-        return requestQueue.add(jsonObjectRequest);
+        requestQueue.add(jsonArrayRequest);
+    }
+
+    @Override
+    public void fetchById(int id, ArticleRepository.OnObjectAction onObjectAction) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, String.format(ARTICLE_URL + "/%d", id), null, getObject(onObjectAction), getErrorListener());
+        RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
+        requestQueue.add(jsonObjectRequest);
     }
 
 
-    private Response.Listener<JSONObject> getObject(OnResponseObjectAction onResponseObjectAction) {
+    private Response.Listener<JSONObject> getObject(ArticleRepository.OnObjectAction onObjectAction) {
         return new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Gson gson = new Gson();
-                Article a = gson.fromJson(response.toString(), Article.class);
-                onResponseObjectAction.doAction(a);
+                final Article a = gson.fromJson(response.toString(), Article.class);
+                onObjectAction.doAction(a);
                 Log.d("ArticleHttp", "fetchById: id = " + a.getId());
             }
         };
     }
 
     @NonNull
-    private static Response.ErrorListener getErrorListener() {
+    private Response.ErrorListener getErrorListener() {
         return new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("ArticleHttp", error.getLocalizedMessage());
                 Log.e("ArticleHttp", Log.getStackTraceString(error));
             }
 
@@ -73,7 +84,7 @@ public class ArticleHttp {
     }
 
     @NonNull
-    private static Response.Listener<JSONArray> getArray(OnResponseArrayAction onResponseArrayAction) {
+    private Response.Listener<JSONArray> getArray(ArticleRepository.OnArrayAction onArrayAction) {
         return new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -81,15 +92,16 @@ public class ArticleHttp {
                     Log.d("ArticleHttp", "Get: Response is null");
                 else {
                     Gson gson = new Gson();
-                    Article[] r = gson.fromJson(response.toString(), Article[].class);
-                    onResponseArrayAction.doAction(r);
+                    final Article[] r = gson.fromJson(response.toString(), Article[].class);
+                    onArrayAction.doAction(r);
                     Log.d("ArticleHttp", "Get Array: " + r.length + " result(s)");
                 }
             }
         };
     }
 
-    public Request<JSONArray> findByText(String searchStr, OnResponseArrayAction action) {
+    @Override
+    public void findByText(String searchStr, ArticleRepository.OnArrayAction action) {
 
         Uri.Builder builder = new Uri.Builder();
         Uri uri = builder
@@ -102,17 +114,9 @@ public class ArticleHttp {
                 (Request.Method.GET, uri.toString(), null, getArray(action), getErrorListener());
 
         RequestQueue requestQueue = ApplicationRequestQueue.getInstance(context.getApplicationContext()).getRequestQueue();
-        return requestQueue.add(jsonArrayRequest);
+        requestQueue.add(jsonArrayRequest);
 
     }
 
-    @FunctionalInterface
-    public interface OnResponseArrayAction {
-        void doAction(Article[] response);
-    }
 
-    @FunctionalInterface
-    public interface OnResponseObjectAction {
-        void doAction(Article response);
-    }
 }

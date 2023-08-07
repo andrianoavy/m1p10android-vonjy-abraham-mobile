@@ -12,6 +12,8 @@ import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
@@ -23,6 +25,7 @@ import mg.itu.m1p10android.BuildConfig;
 import mg.itu.m1p10android.R;
 import mg.itu.m1p10android.data.models.Article;
 import mg.itu.m1p10android.databinding.FragmentArticleDetailsBinding;
+import mg.itu.m1p10android.models.MyApp;
 
 public class ArticleDetailsFragment extends Fragment {
 
@@ -49,22 +52,28 @@ public class ArticleDetailsFragment extends Fragment {
         binding.artDetContenu.setMovementMethod(LinkMovementMethod.getInstance());
         viewModel = new ViewModelProvider(this).get(ArticleDetailsViewModel.class);
         id = new Integer(ArticleDetailsFragmentArgs.fromBundle(getArguments()).getIdArticle());
-        viewModel.fetchById(id, this::displayArticle);
         return root;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel.fetchById(id, this::displayArticle);
+        Picasso.get()
+                .load(String.join("/", BuildConfig.ApiUrl,"article",id.toString(),"cover"))
+                .placeholder(R.drawable.loading_placeholder)
+                .error(R.drawable.error_placeholder)
+                .into(binding.hero);
     }
 
     private void displayArticle(Article a) {
 
         article = a;
-        Picasso.get()
-                .load(String.join("/", BuildConfig.ApiUrl,"article",a.getId().toString(),"cover"))
-                .placeholder(R.drawable.loading_placeholder)
-                .error(R.drawable.error_placeholder)
-                .into(binding.hero);
+
         binding.artDetTitre.setText(article.getTitre());
         binding.artDetDesc.setText(article.getDescr());
 
-        if(a.getVideo() != null && !a.getVideo().isEmpty()) {
+        if(a.getVideo() != null && !a.getVideo().isEmpty() && MyApp.isConnected(getContext())) {
             String unencodedHtml = String.format(getResources().getString(R.string.youtube_webview),a.getVideo() );
             Log.d("Webview", unencodedHtml);
             String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),

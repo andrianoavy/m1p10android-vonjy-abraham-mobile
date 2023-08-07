@@ -17,8 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -34,9 +36,9 @@ import androidx.viewpager2.widget.ViewPager2;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.android.material.navigation.NavigationView;
+
 import mg.itu.m1p10android.databinding.ActivityMainBinding;
-import mg.itu.m1p10android.models.MyApp;
-import mg.itu.m1p10android.models.User;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -80,9 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         NotificationScheduler.scheduleNotification(this);
 
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -97,5 +97,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
 }

@@ -7,5 +7,11 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="Recherche"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="withText|ifRoom"/>
+        app:showAsAction="withText|ifRoom" />
+    <item
+        android:id="@+id/article_download"
+        android:icon="@drawable/baseline_download_for_offline_24"
+        android:title="Download"
+        app:showAsAction="withText|ifRoom"
+        />
 </menu>
