@@ -11,7 +11,7 @@ public class NotificationBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(@NonNull Context context, Intent intent) {
         String title = "Madagascar tourisme";
-        String message = "VVous trouverez les sites touristiques proches de chez vous.";
+        String message = "Vous trouverez les sites touristiques proches de chez vous.";
         long durationInMillis = 180000; // Durée en millisecondes (1 minute dans cet exemple).
 
         LocalNotificationManager notificationManager = new LocalNotificationManager(context);

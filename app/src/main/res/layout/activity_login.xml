@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
+    android:background="@drawable/bg_page"
     tools:context=".LoginActivity">
 
     <TextView
@@ -27,7 +27,6 @@
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif"
         android:text="Connexion"
-        android:background="?attr/colorPrimary"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
