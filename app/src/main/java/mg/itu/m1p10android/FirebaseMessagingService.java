@@ -35,8 +35,6 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         super.onMessageReceived(remoteMessage);
 
         String message = remoteMessage.getNotification().getBody();
-        Log.e("FirebaseMessage","Vous venez de recevoir une notification :"+message);
-        Log.d("FirebaseMessage","Vous venez de recevoir une notification :"+message);
 
         // Action sur la notification
         //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=6Xnz2fwf9Yk"));

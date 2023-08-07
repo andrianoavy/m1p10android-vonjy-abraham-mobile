@@ -16,4 +16,6 @@
         tools:context=".ui.articles.ArticleFragment"
         tools:listitem="@layout/fragment_article" />
 
+
+
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

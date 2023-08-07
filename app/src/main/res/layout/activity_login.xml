@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_page"
+    android:background="?attr/colorPrimary"
     tools:context=".LoginActivity">
 
     <TextView
@@ -13,7 +13,6 @@
         android:layout_height="120dp"
         android:fontFamily="cursive"
         android:paddingVertical="35dp"
-        android:text=""
         android:textAlignment="center"
         android:textSize="20sp"
         tools:ignore="MissingConstraints"
@@ -28,6 +27,7 @@
         android:layout_marginTop="12dp"
         android:fontFamily="sans-serif"
         android:text="Connexion"
+        android:background="?attr/colorPrimary"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="34sp"
@@ -105,8 +105,8 @@
         android:layout_marginVertical="20dp"
         android:height="50dp"
         android:background="@drawable/bg_btn_login"
-        android:text="Connexion"
         android:textColor="@color/white"
+        android:text="Connexion"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/champ_pwd"
         tools:ignore="MissingConstraints"

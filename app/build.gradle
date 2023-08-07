@@ -20,8 +20,8 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"https://cc5e-41-77-20-8.ngrok-free.app/api"'
-            buildConfigField 'String', "ApiAuthority", '"cc5e-41-77-20-8.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiUrl", '"https://3fe7-154-126-56-74.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiAuthority", '"3fe7-154-126-56-74.ngrok-free.app/api"'
             buildConfigField 'String', "Scheme", '"https"'
             manifestPlaceholders = [usesCleartextTraffic:"true"]
         }
