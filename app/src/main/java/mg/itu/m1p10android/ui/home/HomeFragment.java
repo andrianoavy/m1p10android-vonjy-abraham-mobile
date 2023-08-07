@@ -57,27 +57,6 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-//        String unencodedHtml = String.format(getResources().getString(R.string.youtube_webview),"bGNtRsjjysY" );
-//        Log.d("Webview", unencodedHtml);
-//        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
-//                Base64.NO_PADDING);
-
-//        Log.e("test","home activity");
-//        WebSettings webSettings = binding.webview.getSettings();
-//        webSettings.setJavaScriptEnabled(true);
-//
-//        binding.webview.setBackgroundColor(Color.argb(1, 255, 255, 255));
-//        binding.webview.loadData(encodedHtml, "text/html", "base64");
-
-//        final TextView textView = binding.textHome;
-//        binding.button.setOnClickListener(view -> {
-//            getLocation(root);
-//            Toast.makeText(getActivity(), String.format("%f, %f", longitude, latitude), Toast.LENGTH_SHORT).show();
-//        });
-//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-
         //slide image
         viewPager2 = root.findViewById(R.id.viewPager);
         List<SlideItem> slideItem = new ArrayList<>();
