@@ -112,7 +112,7 @@ public class ArticleDetailsFragment extends Fragment {
                 super.onPageSelected(position);
 
                 slideHandler.removeCallbacks(slideeRunnable);
-                slideHandler.postDelayed(slideeRunnable,2000);
+                slideHandler.postDelayed(slideeRunnable,6000);
             }
         });
 

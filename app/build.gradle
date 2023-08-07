@@ -20,8 +20,8 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"https://0d01-41-63-150-240.ngrok-free.app/api"'
-            buildConfigField 'String', "ApiAuthority", '"0d01-41-63-150-240.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiUrl", '"https://332a-41-77-19-27.ngrok-free.app/api"'
+            buildConfigField 'String', "ApiAuthority", '"332a-41-77-19-27.ngrok-free.app/api"'
             buildConfigField 'String', "Scheme", '"https"'
 
 //            buildConfigField 'String', "ApiUrl", '"http://192.168.88.26:3000/api"'

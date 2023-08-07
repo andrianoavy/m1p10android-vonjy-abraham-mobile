@@ -12,7 +12,7 @@ import mg.itu.m1p10android.databinding.FragmentArticleBinding;
 public class ArticleViewHolder extends RecyclerView.ViewHolder {
     public final ImageView articleImage;
     public final TextView articleTitre;
-    public final TextView articleDescr;
+//    public final TextView articleDescr;
     public final TextView articleType;
     public Article article;
 
@@ -21,7 +21,7 @@ public class ArticleViewHolder extends RecyclerView.ViewHolder {
         super(binding.getRoot());
         articleImage = binding.articleImage;
         articleTitre = binding.articleTitre;
-        articleDescr = binding.articleDescr;
+//        articleDescr = binding.articleDescr;
         articleType = binding.articleType;
         itemView.setOnClickListener( view ->{
             ArticleFragmentDirections.NavArticleListToDetails listToDetails = ArticleFragmentDirections.navArticleListToDetails(article.getId());
