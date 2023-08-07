@@ -31,4 +31,40 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="db_schema_script" >
+        CREATE TABLE IF NOT EXISTS \"villes\"(
+            id integer NOT NULL PRIMARY KEY autoincrement,
+            nom text NOT NULL,
+            longitude real NOT NULL,
+            latitude real NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS \"articles\"(
+            id integer NOT NULL PRIMARY KEY autoincrement,
+            titre varchar(255) NOT NULL,
+            descr varchar(255),
+            contenu text,
+            date_pub text,
+            date_modif text, video text, longitude decimal, latitude decimal
+        );
+        CREATE TABLE IF NOT EXISTS \"images\"(
+            id integer NOT NULL PRIMARY KEY autoincrement,
+            date_modif text,
+            article int,
+            bytes blob,
+            FOREIGN KEY (article) REFERENCES articles(id)
+            );
+
+    </string>
+    <string name="db_drop_tables_script" >
+        DROP TABLE IF EXISTS \"users\";
+        DROP TABLE IF EXISTS \"villes\";
+        DROP TABLE IF EXISTS \"images\";
+        DROP TABLE IF EXISTS \"articles\";
+    </string>
+    <string name="insert_stmt">
+        INSERT INTO \"articles\" (id, titre, descr, date_pub, date_modif,longitude, latitude) VALUES (?, ?, ?, ?, ?, ?, ?);
+    </string>
+    <string name="update_stmt" >
+        UPDATE articles SET titre = ? , descr = ?, contenu = ?, video = ?,longitude = ?, latitude = ?, date_modif = ? WHERE id = ? ;
+    </string>
 </resources>

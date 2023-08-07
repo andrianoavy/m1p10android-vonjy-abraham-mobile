@@ -20,9 +20,13 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField 'String', "ApiUrl", '"https://28a5-154-126-56-74.ngrok-free.app/api"'
-            buildConfigField 'String', "ApiAuthority", '"28a5-154-126-56-74.ngrok-free.app/api"'
-            buildConfigField 'String', "Scheme", '"https"'
+//            buildConfigField 'String', "ApiUrl", '"https://28a5-154-126-56-74.ngrok-free.app/api"'
+//            buildConfigField 'String', "ApiAuthority", '"28a5-154-126-56-74.ngrok-free.app/api"'
+//            buildConfigField 'String', "Scheme", '"https"'
+
+            buildConfigField 'String', "ApiUrl", '"http://192.168.88.26:3000/api"'
+            buildConfigField 'String', "ApiAuthority", '"192.168.88.26:3000/api"'
+            buildConfigField 'String', "Scheme", '"http"'
             manifestPlaceholders = [usesCleartextTraffic:"true"]
         }
         release {
@@ -61,6 +65,11 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+
+    def room_version = "2.5.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }
 configurations.implementation {
     exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'

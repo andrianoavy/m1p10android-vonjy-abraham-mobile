@@ -1,20 +1,6 @@
 package mg.itu.m1p10android.ui.articles;
 
-import android.content.Context;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.view.MenuHost;
-import androidx.core.view.MenuHostHelper;
-import androidx.core.view.MenuProvider;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,13 +8,22 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuHost;
+import androidx.core.view.MenuProvider;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import mg.itu.m1p10android.R;
-import mg.itu.m1p10android.data.http.ArticleHttp;
+import mg.itu.m1p10android.data.local.LocalDb;
 import mg.itu.m1p10android.data.models.Article;
-import mg.itu.m1p10android.databinding.FragmentArticleBinding;
 import mg.itu.m1p10android.databinding.FragmentArticleListBinding;
+import mg.itu.m1p10android.models.MyApp;
 
 public class ArticleFragment extends Fragment implements MenuProvider {
 
@@ -60,6 +55,8 @@ public class ArticleFragment extends Fragment implements MenuProvider {
 
         View root = binding.getRoot();
         binding.refresher.setOnRefreshListener(() -> {
+            if(!MyApp.isConnected(getContext()))
+                viewModel = new ViewModelProvider(this).get(ArticleViewModel.class);
             viewModel.fetchAll(this::populateRecyclerView);
             binding.refresher.setRefreshing(false);
         });
@@ -95,6 +92,7 @@ public class ArticleFragment extends Fragment implements MenuProvider {
         MenuProvider.super.onPrepareMenu(menu);
 
         MenuItem menuItem = menu.getItem(0);
+        MenuItem downloader = menu.getItem(1);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -107,6 +105,11 @@ public class ArticleFragment extends Fragment implements MenuProvider {
             public boolean onQueryTextChange(String s) {
                 return false;
             }
+        });
+
+        downloader.setOnMenuItemClickListener(menuItem1 -> {
+            viewModel.writeToLocal();
+           return true;
         });
     }
     @Override
